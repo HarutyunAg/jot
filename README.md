@@ -1,4 +1,4 @@
-# Jot
+# (ノ-_-)ノ ミ Jot
 
 I feel bad when many static strings spread all over the code.  
 So I create this little boy called **Jot** to centralize my resources in JSON and easily access nested values using dot notation.
