@@ -1,7 +1,7 @@
 # Jot
 
-I often frustrated having many static strings spread all over code.  
-With Jot, I can centralize my resources in JSON files, for accessing nested values using dot notation.
+I often feel frustrated having many static strings spread all over the code.  
+So I create this little boy called **Jot** to centralize my resources in JSON and easily access nested values using dot notation.
 
 ## Usage example
 
@@ -12,7 +12,7 @@ To use Jot, first create a JSON file with your strings, for example:
     "en": {
         "title": {
             "label": "Hi!",
-            "description": "Welcome to Jot"
+            "description": "I'm Jot. What u want ? (ノ-_-)ノ ミ ┴┴"
         }
     }
 }
