@@ -1,7 +1,7 @@
 # Jot
-**Jot** is a lightweight Python library for accessing nested strings in JSON files using dot notation.  
-I often frustrated having many static strings spread all over code. 
-With Jot, I can centralize my string resources in JSON files, allowing for cleaner code and easier updates.
+
+I often frustrated having many static strings spread all over code.  
+With Jot, I can centralize my resources in JSON files, for accessing nested values using dot notation.
 
 ## Usage example
 
