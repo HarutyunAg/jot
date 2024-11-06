@@ -1,6 +1,6 @@
 from typing import Optional, Any
 from abc import ABC, abstractmethod
-from jot.datasource import DataSource
+from jot.datasource import FileLoaderFactory, FileLoader
 
 
 class JotGrand(ABC):
@@ -13,8 +13,9 @@ class JotGrand(ABC):
 
 class Jot(JotGrand):
 
-    def __init__(self, data_source: DataSource):
-        self.data: dict = data_source.load_data()
+    def __init__(self, path: str):
+        loader: FileLoader = FileLoaderFactory.get(path=path)
+        self.data: dict = loader.load()
 
     def get(self, key: str, default: Optional[Any] = None) -> Any:
         keys = key.split('.')
