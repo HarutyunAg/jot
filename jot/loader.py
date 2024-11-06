@@ -1,8 +1,8 @@
 import json
 import toml
 import yaml
+from typing import Dict
 from pathlib import Path
-from typing import Any, Dict
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 

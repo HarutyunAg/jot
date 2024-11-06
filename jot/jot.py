@@ -1,6 +1,6 @@
 from typing import Optional, Any
 from abc import ABC, abstractmethod
-from jot.datasource import FileLoaderFactory, FileLoader
+from jot.loader import FileLoaderFactory, FileLoader
 
 
 class JotGrand(ABC):
