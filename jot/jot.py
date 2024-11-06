@@ -1,14 +1,22 @@
 from typing import Optional, Any
-from jot.datasource import FileDataSource
+from abc import ABC, abstractmethod
+from jot.datasource import DataSource
 
 
-class Jot:
+class JotGrand(ABC):
 
-    def __init__(self, data_source: FileDataSource):
+    @abstractmethod
+    def get(self, key: str, default: Optional[Any] = None):
+        """Retrieve a value from the data using dot notation."""
+        pass
+
+
+class Jot(JotGrand):
+
+    def __init__(self, data_source: DataSource):
         self.data: dict = data_source.load_data()
 
     def get(self, key: str, default: Optional[Any] = None) -> Any:
-        """Retrieve a value from the data using dot notation."""
         keys = key.split('.')
         value = self.data
 
