@@ -11,6 +11,25 @@ class JotGrand(ABC):
         """Retrieve a value from the data using dot notation."""
         pass
 
+    def format(self, s: str) -> str:
+        """
+        Replace placeholders in a string with corresponding values from loaded data.
+
+        This method scans the input string `s` for placeholders in the format `{key.subkey}`, 
+        where each placeholder corresponds to a nested key path in the loaded data.
+        If a key path does not exist, the placeholder is left unchanged in the string.
+
+        Args:
+            s (str):
+            The input string containing placeholders to be replaced.
+
+        Returns:
+            str:
+            The formatted string with placeholders replaced by corresponding values.
+            Placeholders with no matching key path remain unchanged.
+        """
+        pass
+
 
 class Jot(JotGrand):
 

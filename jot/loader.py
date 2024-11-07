@@ -42,6 +42,26 @@ class XMLLoader(FileLoader):
 
 
 class FileLoaderFactory:
+    """
+    A factory class to create the appropriate file loader based on file extension.
+
+    FileLoaderFactory detects the file type from the file extension and selects the 
+    appropriate loader class (JSONLoader, YAMLoader, TOMLLoader, or XMLLoader) to 
+    load the file content.
+    
+    If an unsupported file type is provided, it raises a ValueError,
+    ensuring only compatible file formats are used.
+
+    Attributes:
+        loaders (dict):
+        A dictionary mapping file extensions to their corresponding 
+        loader classes.
+
+    Methods:
+        get(path: str) -> FileLoader:
+            Returns an instance of the appropriate FileLoader subclass based on 
+            the file extension of the given path.
+    """
     loaders = {
         '.json': JSONLoader,
         '.yaml': YAMLoader,
