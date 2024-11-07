@@ -32,23 +32,19 @@ class Jot(JotGrand):
             raise KeyError(f"Invalid key path: {key}")
         return value
 
+
     def format(self, s: str) -> str:
         def replace(match):
             if not s:
                 return ''
-
             keys: list[str] = match.group(1).split('.')
             value_not_found: str = '{' + '.'.join(keys) + '}'
-            if len(keys) == 1:
-                k: str = keys[0]
-                v: str = self.data.get(k, value_not_found)
-            elif len(keys) > 1:
-                nested_data = self.data.copy()
-                for k in keys:
-                    try:
-                        nested_data = nested_data.get(k, value_not_found)
-                        v = nested_data
-                    except Exception:
-                        v = value_not_found
-            return v
+            
+            nested = self.data
+            for key in keys:
+                if isinstance(nested, dict) and key in nested:
+                    nested = nested[key]
+                else:
+                    return value_not_found
+            return str(nested)
         return re.sub(r'\{([\w\.]+)\}', replace, s)

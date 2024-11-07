@@ -1,26 +1,31 @@
-# (ノ-_-)ノ ミ Jot
+# (ノ-_-)ノ ミ {...}
 
-Jot can work with JSON \ TOML \ YAML \ and easily access nested values using dot notation.
+Jot can work with JSON \ TOML \ YAML \XML. This guy easily retrieve nested values using dot notation.
+And when it comes to string formatting, Jot’s got your back — it safely replaces placeholders with values, so you can create templates using dot notation without worrying about missing data. 
 
 ## Usage example
 
 ```json
-{
-    "en": {
-        "title": {
-            "label": "Hi!",
-            "description": "I'm Jot. What u want ? (ノ-_-)ノ ミ ┴┴"
+    {
+        "user": {
+            "name": "Jot",
+            "pocket": {
+                "box" : "🦎"
+            }
         }
     }
-}
-
 ```
-
-Then, you can access values as follows:
 
 ```python
 from jot import Jot
 
 jot = Jot("path/to/dots.json")
-label: str = jot.get("en.title.label", default="not found")
+label: str = jot.get("user.pocket.box")
+# output --> 🦎
+```
+
+```python
+template = "Hey {user.name}, what's in your pocket? {user.pocket.box}"
+jot.format(template)
+# Output: Hey Jot, what's in your pocket? 🦎
 ```
