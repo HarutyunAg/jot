@@ -1,5 +1,5 @@
 .venv
 poetry.lock
 .pytest_cache
-jot\__pycache__
-tests\__pycache__
+jot/__pycache__
+tests/__pycache__

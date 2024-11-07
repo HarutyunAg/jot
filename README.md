@@ -4,8 +4,6 @@ Jot can work with JSON \ TOML \ YAML \ and easily access nested values using dot
 
 ## Usage example
 
-To use Jot, first create a JSON file with your strings, for example:
-
 ```json
 {
     "en": {
