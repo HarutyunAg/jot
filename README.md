@@ -20,7 +20,7 @@ And when it comes to string formatting, Jot’s got your back — it safely repl
 from jot import Jot
 
 jot = Jot("path/to/dots.json")
-label: str = jot.get("user.pocket.box")
+jot.get("user.pocket.box")
 # output --> 🦎
 ```
 
