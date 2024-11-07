@@ -6,6 +6,11 @@ from pathlib import Path
 
 
 TEMPLATE: dict = {
+    "user": {
+        "name": "Alice",
+        "age": 30
+    },
+
     "box": {
         "name": "rabbit",
         "content": "🐇"
