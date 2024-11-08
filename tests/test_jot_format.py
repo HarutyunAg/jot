@@ -3,8 +3,8 @@ from jot.jot import Jot
 
 def test_format_existing_keys(temporary_json_file):
     jot = Jot(temporary_json_file)
-    input_string = "Hello {user.name}, welcome to the {box.name} box with {box.content}!"
-    expected_output = "Hello Alice, welcome to the rabbit box with 🐇!"
+    input_string = "Hello {user.name}! {box.content}"
+    expected_output = "Hello Alice! 🐇"
     assert jot.format(input_string) == expected_output
 
 

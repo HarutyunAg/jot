@@ -1,7 +1,9 @@
 import re
 from typing import Optional, Any
+import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 from jot.loader import FileLoaderFactory, FileLoader
+from jot.accessor import DataAccessor, DictAccessor, XMLAccessor
 
 
 class JotGrand(ABC):
@@ -34,23 +36,20 @@ class JotGrand(ABC):
 class Jot(JotGrand):
 
     def __init__(self, path: str):
-        loader: FileLoader = FileLoaderFactory.get(path=path)
-        self.data: dict = loader.load()
+        loader: FileLoader = FileLoaderFactory.get(path)
+        self.data = loader.load()
+        self.__accessor: DataAccessor = self.__init_accessor()
+
+    def __init_accessor(self):
+        if isinstance(self.data, dict):
+            return DictAccessor(self.data)
+        elif isinstance(self.data, ET.Element):
+            return XMLAccessor(self.data)
+        else:
+            raise ValueError("Unsupported data format")
 
     def get(self, key: str, default: Optional[Any] = None) -> Any:
-        keys = key.split('.')
-        value = self.data
-
-        for k in keys:
-            if isinstance(value, dict):
-                value = value.get(k, default)
-            else:
-                return default
-
-        if isinstance(value, dict):
-            raise KeyError(f"Invalid key path: {key}")
-        return value
-
+        return self.__accessor.get(key, default)
 
     def format(self, s: str) -> str:
         def replace(match):

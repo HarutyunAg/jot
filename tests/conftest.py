@@ -51,3 +51,25 @@ def temporary_toml_file():
         f_path = f.name
     yield f_path
     Path(f_path).unlink()
+
+
+@pytest.fixture
+def temporary_xml_file():
+    content = """<?xml version="1.0"?>
+    <root>
+        <user>
+            <name>Alice</name>
+            <age>30</age>
+        </user>
+        <box>
+            <name>rabbit</name>
+            <content>🐇</content>
+        </box>
+    </root>
+    """
+    
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".xml", mode="w", encoding="utf-8") as f:
+        f.write(content)
+        f_path = f.name
+    yield f_path
+    Path(f_path).unlink()

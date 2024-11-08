@@ -1,41 +1,26 @@
-import jot.loader as ld
+from jot.loader import JSONLoader, YAMLoader, TOMLLoader, XMLLoader, FileLoaderFactory
 from tests.conftest import TEMPLATE
+import pytest
 
-
-def test_json_loader_loads_data_correctly(temporary_json_file):
-    loader = ld.JSONLoader(temporary_json_file)
+@pytest.mark.parametrize("loader_class, temp_file_fixture", [
+    (JSONLoader, "temporary_json_file"),
+    (YAMLoader, "temporary_yaml_file"),
+    (TOMLLoader, "temporary_toml_file"),
+])
+def test_loader_loads_data_correctly(loader_class, temp_file_fixture, request):
+    temp_file_path = request.getfixturevalue(temp_file_fixture)
+    loader = loader_class(temp_file_path)
     data = loader.load()
     assert data == TEMPLATE
 
 
-def test_yaml_loader_loads_data_correctly(temporary_yaml_file):
-    loader = ld.YAMLoader(temporary_yaml_file)
-    data = loader.load()
-    assert data == TEMPLATE
-
-
-def test_toml_loader_loads_data_correctly(temporary_toml_file):
-    loader = ld.TOMLLoader(temporary_toml_file)
-    data = loader.load()
-    assert data == TEMPLATE
-
-
-def test_factory_json_loader(temporary_json_file):
-    loader = ld.FileLoaderFactory.get(temporary_json_file)
-    actual_type = type(loader)
-    expected_type = ld.JSONLoader
-    assert actual_type is expected_type
-
-
-def test_factory_yaml_loader(temporary_yaml_file):
-    loader = ld.FileLoaderFactory.get(temporary_yaml_file)
-    actual_type = type(loader)
-    expected_type = ld.YAMLoader
-    assert actual_type is expected_type
-    
-
-def test_factory_toml_loader(temporary_toml_file):
-    loader = ld.FileLoaderFactory.get(temporary_toml_file)
-    actual_type = type(loader)
-    expected_type = ld.TOMLLoader
-    assert actual_type is expected_type
+@pytest.mark.parametrize("temp_file_fixture, expected_loader_type", [
+    ("temporary_json_file", JSONLoader),
+    ("temporary_yaml_file", YAMLoader),
+    ("temporary_toml_file", TOMLLoader),
+    ("temporary_xml_file", XMLLoader),
+])
+def test_factory_creates_correct_loader(temp_file_fixture, expected_loader_type, request):
+    temp_file_path = request.getfixturevalue(temp_file_fixture)
+    loader = FileLoaderFactory.get(temp_file_path)
+    assert isinstance(loader, expected_loader_type)
