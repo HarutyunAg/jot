@@ -9,7 +9,7 @@ from pathlib import Path
 TEMPLATE: dict = {
     "user": {
         "name": "Alice",
-        "age": 30
+        "age": 16
     },
 
     "box": {
