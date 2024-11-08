@@ -59,7 +59,7 @@ def temporary_xml_file():
     <root>
         <user>
             <name>Alice</name>
-            <age>30</age>
+            <age>16</age>
         </user>
         <box>
             <name>rabbit</name>

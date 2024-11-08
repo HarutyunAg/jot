@@ -52,17 +52,4 @@ class Jot(JotGrand):
         return self.__accessor.get(key, default)
 
     def format(self, s: str) -> str:
-        def replace(match):
-            if not s:
-                return ''
-            keys: list[str] = match.group(1).split('.')
-            value_not_found: str = '{' + '.'.join(keys) + '}'
-            
-            nested = self.data
-            for key in keys:
-                if isinstance(nested, dict) and key in nested:
-                    nested = nested[key]
-                else:
-                    return value_not_found
-            return str(nested)
-        return re.sub(r'\{([\w\.]+)\}', replace, s)
+        return self.__accessor.format(s)
