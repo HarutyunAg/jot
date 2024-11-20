@@ -1,7 +1,22 @@
 # Jot (ノ-_-)ノ ミ {...}
 
 Jot can work with JSON \ TOML \ YAML \XML. This guy easily retrieve nested values using dot notation.
-And when it comes to string formatting, Jot’s got your back — it safely replaces placeholders with values, so you can create templates using dot notation without worrying about missing data. 
+And when it comes to string formatting, Jot got your back — it safely replaces placeholders with values, so you can create templates using dot notation without worrying about missing data. 
+
+## Dir structure
+
+```bash
+    jot/
+    ├── jot/
+    │   ├── jot.py         # Core Jot class
+    │   ├── loader.py      # Handles file loading based on extensions
+    │   ├── accessor.py    # Interface for accessing values based on file extension
+    │   └── __init__.py 
+    │
+    └── tests/
+        ├── test_jot.py    # Unit tests for Jot
+        └── ...            # Additional pytest test cases
+```
 
 ## Usage example
 
