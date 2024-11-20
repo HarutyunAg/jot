@@ -3,7 +3,7 @@
 Jot can work with JSON \ TOML \ YAML \XML. This guy easily retrieve nested values using dot notation.
 And when it comes to string formatting, Jot got your back — it safely replaces placeholders with values, so you can create templates using dot notation without worrying about missing data. 
 
-## Dir structure
+## Structure
 
 ```bash
     jot/

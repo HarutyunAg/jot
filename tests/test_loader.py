@@ -5,7 +5,7 @@ import pytest
 @pytest.mark.parametrize("loader_class, temp_file_fixture", [
     (JSONLoader, "temporary_json_file"),
     (YAMLoader, "temporary_yaml_file"),
-    (TOMLLoader, "temporary_toml_file"),
+    (TOMLLoader, "temporary_toml_file")
 ])
 def test_loader_loads_data_correctly(loader_class, temp_file_fixture, request):
     temp_file_path = request.getfixturevalue(temp_file_fixture)
